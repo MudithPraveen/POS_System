@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRouter } from "expo-router";
-import { View, Text, TextInput, Button, StyleSheet,Image } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet,Image, TouchableOpacity } from 'react-native';
 
 export default function SignUp() {
   const router = useRouter();
@@ -106,8 +106,9 @@ export default function SignUp() {
 
       {/* Sign-Up Button */}
       <View style={styles.btn}>
-      <Text style={styles.btnText} onPress={handleSignUp}>Sign Up</Text>
-      
+        <TouchableOpacity style={styles.btnContainer} onPress={handleSignUp}>
+          <Text style={styles.btnText}>Sign Up</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Sign-In Link */}
@@ -173,21 +174,30 @@ const styles = StyleSheet.create({
     color: '#222',
     marginBottom: 8,
   },
+  btnContainer: { 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: '#075eec',
+    paddingVertical: 5,
+    borderRadius: 30,
+    height: 50,
+    width:"100%"
+  },
   btnText: {
     fontSize: 18,
-    lineHeight: 26,
     fontWeight: '600',
-    
+    color: 'white', 
   },
   btn: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 30,
-    paddingVertical: 10,
+    paddingVertical: 3,
     paddingHorizontal: 20,
     borderWidth: 1,
     backgroundColor: '#075eec',
     borderColor: '#075eec',
+    marginTop:30,
   },
 });

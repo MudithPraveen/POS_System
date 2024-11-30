@@ -88,11 +88,11 @@ export default function SignIn() {
 
       {/* Sign-In Button */}
       
-      <view style={styles.btn}>
+      <View style={styles.btn}>
         <TouchableOpacity style={styles.btnContainer} onPress={handleSignIn}>
           <Text style={styles.btnText}>Sign in</Text>
         </TouchableOpacity>
-      </view>
+      </View>
       {/* Sign-Up Link */}
       <Link href={"/SignUp"} style={styles.link}>
         Don't have an account? Sign Up
@@ -159,22 +159,29 @@ const styles = StyleSheet.create({
   btnContainer: { 
     justifyContent: 'center', 
     alignItems: 'center', 
-    paddingHorizontal: 10,
+    //paddingHorizontal: "80%",
     backgroundColor: '#075eec',
     paddingVertical: 5,
     borderRadius: 30,
     height: 50,
+    width:"100%"
   },
   btnText: {
     fontSize: 18,
-    lineHeight: 26,
+    //lineHeight: 26,
     fontWeight: '600',
     color: 'white', 
   },
   btn: {
-    flex: 1, 
-    justifyContent: 'center', 
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
+    justifyContent: 'center',
+    borderRadius: 30,
+    paddingVertical: 3,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    backgroundColor: '#075eec',
+    borderColor: '#075eec',
+    marginTop:30,
   },
 });
