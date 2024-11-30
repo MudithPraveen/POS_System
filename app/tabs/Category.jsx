@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 
 const categories = [
   { id: '1', name: 'Fruits', image: require('../../assets/images/fruits.png') },
@@ -13,23 +13,17 @@ const categories = [
 ];
 
 export default function Home() {
-  const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.gridItem}>
-      <Image source={item.image} style={styles.image} />
-      <Text style={styles.itemText}>{item.name}</Text>
-    </TouchableOpacity>
-  );
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Item Categories</Text>
-      <FlatList
-        data={categories}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        numColumns={4} // Display items in 2 columns
-        contentContainerStyle={styles.grid}
-      />
+      <ScrollView contentContainerStyle={styles.grid}>
+        {categories.map((item) => (
+          <TouchableOpacity key={item.id} style={styles.gridItem}>
+            <Image source={item.image} style={styles.image} />
+            <Text style={styles.itemText}>{item.name}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -47,12 +41,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   grid: {
-    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   gridItem: {
-    flex: 1,
-    margin: 10,
-    height:220,
+    width: '48%', // Two items per row (with margin)
+    marginBottom: 16,
     backgroundColor: '#ffffff',
     borderRadius: 8,
     elevation: 3, // Shadow for Android
@@ -64,15 +59,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 170,
-    height: 170,
-    marginTop:1,
-    marginBottom: 1,
+    width: '100%', // Scale dynamically to match item width
+    height: 120, // Fixed height for images
     resizeMode: 'contain',
+    marginBottom: 8,
   },
   itemText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#333',
+    textAlign: 'center',
   },
 });

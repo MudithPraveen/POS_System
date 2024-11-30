@@ -60,8 +60,8 @@ const TabRoot = () => {
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 20,
-    right: 20,
+    bottom: '5%',
+    right: '5%',
     backgroundColor: '#FF3B30', // Red color for sign-out
     width: 50,
     height: 50,
