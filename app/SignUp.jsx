@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRouter } from "expo-router";
-import { View, Text, TextInput, Button, StyleSheet,Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet,Image, TouchableOpacity,ScrollView } from 'react-native';
 
 export default function SignUp() {
   const router = useRouter();
@@ -55,13 +55,14 @@ export default function SignUp() {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <View style={styles.header}>
       <Image
             alt="App Logo"
             resizeMode="contain"
             style={styles.headerImg}
-            source={{ uri: 'https://assets.withfra.me/SignIn.2.png' }} />
+            source={require('../assets/images/comlogo.jpg')} />
       <Text style={styles.title}>SignUp in to <Text style={{ color: '#075eec' }}>POS SYSTEM</Text></Text>
       <Text style={styles.subtitle}>
             Get access to your pos system and more
@@ -116,6 +117,7 @@ export default function SignUp() {
         Already have an account? Sign In
       </Link>
     </View>
+    </ScrollView>
   );
 }
 
@@ -152,10 +154,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   headerImg: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     alignSelf: 'center',
     marginBottom: 36,
+    borderRadius: 20,
   },
   subtitle: {
     fontSize: 15,

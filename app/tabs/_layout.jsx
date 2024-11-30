@@ -20,7 +20,7 @@ const TabRoot = () => {
 
   const signOut = () => { 
     router.push("./");
-    console.log("User signed out!");
+    alert("User signed out!");
   
   };
 

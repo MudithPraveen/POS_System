@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet,Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet,Image, TouchableOpacity,ScrollView } from 'react-native';
 import { Link, useRouter } from "expo-router";
 
 export default function SignIn() {
@@ -46,13 +46,14 @@ export default function SignIn() {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <View style={styles.header}>
       <Image
             alt="App Logo"
             resizeMode="contain"
             style={styles.headerImg}
-            source={{ uri: 'https://assets.withfra.me/SignIn.2.png' }} />
+            source={require('../assets/images/comlogo.jpg')} />
       <Text style={styles.title}>
             Sign in to <Text style={{ color: '#075eec' }}>POS SYSTEM</Text>
           </Text>
@@ -98,6 +99,7 @@ export default function SignIn() {
         Don't have an account? Sign Up
       </Link>
     </View>
+    </ScrollView>
   );
 }
 
@@ -134,10 +136,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   headerImg: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     alignSelf: 'center',
     marginBottom: 36,
+    borderRadius: 20,
   },
   subtitle: {
     fontSize: 15,
