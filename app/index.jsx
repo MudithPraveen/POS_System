@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 26,
     fontWeight: '600',
+    color: 'white',
     
   },
   btn: {
