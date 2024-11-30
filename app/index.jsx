@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet,Image } from 'react-native';
+import { View, Text, TextInput, StyleSheet,Image, TouchableOpacity } from 'react-native';
 import { Link, useRouter } from "expo-router";
 
 export default function SignIn() {
@@ -87,10 +87,12 @@ export default function SignIn() {
       {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
 
       {/* Sign-In Button */}
-      <View style={styles.btn}>
       
-      <Text style={styles.btnText} onPress={handleSignIn}>Sign in</Text>
-      </View>
+      <view style={styles.btn}>
+        <TouchableOpacity style={styles.btnContainer} onPress={handleSignIn}>
+          <Text style={styles.btnText}>Sign in</Text>
+        </TouchableOpacity>
+      </view>
       {/* Sign-Up Link */}
       <Link href={"/SignUp"} style={styles.link}>
         Don't have an account? Sign Up
@@ -154,22 +156,25 @@ const styles = StyleSheet.create({
     color: '#222',
     marginBottom: 8,
   },
+  btnContainer: { 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    paddingHorizontal: 10,
+    backgroundColor: '#075eec',
+    paddingVertical: 5,
+    borderRadius: 30,
+    height: 50,
+  },
   btnText: {
     fontSize: 18,
     lineHeight: 26,
     fontWeight: '600',
-    color: 'white',
-    
+    color: 'white', 
   },
   btn: {
-    flexDirection: 'row',
+    flex: 1, 
+    justifyContent: 'center', 
     alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 30,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderWidth: 1,
-    backgroundColor: '#075eec',
-    borderColor: '#075eec',
+    marginTop: 20,
   },
 });
