@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRouter } from "expo-router";
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet,Image } from 'react-native';
 
 export default function SignUp() {
   const router = useRouter();
@@ -56,18 +56,31 @@ export default function SignUp() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
-
+      <View style={styles.header}>
+      <Image
+            alt="App Logo"
+            resizeMode="contain"
+            style={styles.headerImg}
+            source={{ uri: 'https://assets.withfra.me/SignIn.2.png' }} />
+      <Text style={styles.title}>SignUp in to <Text style={{ color: '#075eec' }}>POS SYSTEM</Text></Text>
+      <Text style={styles.subtitle}>
+            Get access to your pos system and more
+          </Text>
+      </View>
       {/* Name Input */}
+      <Text style={styles.inputLabel}>Name</Text>
       <TextInput
         placeholder="Name"
         style={[styles.input, nameError && styles.errorBorder]}
         value={name}
         onChangeText={setName}
+        autoCapitalize="none"
+        placeholderTextColor="#6b7280"
       />
       {nameError ? <Text style={styles.errorText}>{nameError}</Text> : null}
 
       {/* Email Input */}
+      <Text style={styles.inputLabel}>Email</Text>
       <TextInput
         placeholder="Email"
         style={[styles.input, emailError && styles.errorBorder]}
@@ -75,21 +88,27 @@ export default function SignUp() {
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        placeholderTextColor="#6b7280"
       />
       {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
 
       {/* Password Input */}
+      <Text style={styles.inputLabel}>Password</Text>
       <TextInput
         placeholder="Password"
         secureTextEntry
         style={[styles.input, passwordError && styles.errorBorder]}
         value={password}
         onChangeText={setPassword}
+        placeholderTextColor="#6b7280"
       />
       {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
 
       {/* Sign-Up Button */}
-      <Button title="Sign Up" onPress={handleSignUp} />
+      <View style={styles.btn}>
+      <Text style={styles.btnText} onPress={handleSignUp}>Sign Up</Text>
+      
+      </View>
 
       {/* Sign-In Link */}
       <Link href={"/"} style={styles.link}>
@@ -130,5 +149,45 @@ const styles = StyleSheet.create({
     color: 'blue',
     marginTop: 10,
     textAlign: 'center',
+  },
+  headerImg: {
+    width: 80,
+    height: 80,
+    alignSelf: 'center',
+    marginBottom: 36,
+  },
+  subtitle: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#929292',
+    
+  },
+  header: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 36,
+  },
+  inputLabel: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: '#222',
+    marginBottom: 8,
+  },
+  btnText: {
+    fontSize: 18,
+    lineHeight: 26,
+    fontWeight: '600',
+    
+  },
+  btn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    backgroundColor: '#075eec',
+    borderColor: '#075eec',
   },
 });

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet,Image } from 'react-native';
 import { Link, useRouter } from "expo-router";
 
 export default function SignIn() {
@@ -47,9 +47,22 @@ export default function SignIn() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign In</Text>
+      <View style={styles.header}>
+      <Image
+            alt="App Logo"
+            resizeMode="contain"
+            style={styles.headerImg}
+            source={{ uri: 'https://assets.withfra.me/SignIn.2.png' }} />
+      <Text style={styles.title}>
+            Sign in to <Text style={{ color: '#075eec' }}>POS SYSTEM</Text>
+          </Text>
+          <Text style={styles.subtitle}>
+            Get access to your pos system and more
+          </Text>
+          </View>
 
       {/* Email Input */}
+      <Text style={styles.inputLabel}>Email address</Text>
       <TextInput
         placeholder="Email"
         style={[styles.input, emailError && styles.errorBorder]}
@@ -57,22 +70,27 @@ export default function SignIn() {
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        placeholderTextColor="#6b7280"
       />
       {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
 
       {/* Password Input */}
+      <Text style={styles.inputLabel}>Password</Text>
       <TextInput
         placeholder="Password"
         secureTextEntry
         style={[styles.input, passwordError && styles.errorBorder]}
         value={password}
         onChangeText={setPassword}
+        placeholderTextColor="#6b7280"
       />
       {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
 
       {/* Sign-In Button */}
-      <Button title="Sign In" onPress={handleSignIn} />
-
+      <View style={styles.btn}>
+      
+      <Text style={styles.btnText} onPress={handleSignIn}>Sign in</Text>
+      </View>
       {/* Sign-Up Link */}
       <Link href={"/SignUp"} style={styles.link}>
         Don't have an account? Sign Up
@@ -112,5 +130,45 @@ const styles = StyleSheet.create({
     color: 'blue',
     marginTop: 10,
     textAlign: 'center',
+  },
+  headerImg: {
+    width: 80,
+    height: 80,
+    alignSelf: 'center',
+    marginBottom: 36,
+  },
+  subtitle: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#929292',
+    
+  },
+  header: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 36,
+  },
+  inputLabel: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: '#222',
+    marginBottom: 8,
+  },
+  btnText: {
+    fontSize: 18,
+    lineHeight: 26,
+    fontWeight: '600',
+    
+  },
+  btn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    backgroundColor: '#075eec',
+    borderColor: '#075eec',
   },
 });
