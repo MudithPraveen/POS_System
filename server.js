@@ -11,8 +11,8 @@ app.use(cors());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "password",
-  database: "test_db",
+  password: "",
+  database: "auth_demo",
 });
 
 db.connect((err) => {
@@ -22,9 +22,9 @@ db.connect((err) => {
 
 // Sign Up
 app.post("/signup", (req, res) => {
-  const { username, password } = req.body;
-  const query = "INSERT INTO users (username, password) VALUES (?, ?)";
-  db.query(query, [username, password], (err, result) => {
+  const { name, email, password } = req.body;
+  const query = "INSERT INTO user (username,email, password) VALUES (?, ?, ?)";
+  db.query(query, [name, email, password], (err, result) => {
     if (err) return res.status(500).send(err);
     res.send("User registered!");
   });
@@ -33,7 +33,7 @@ app.post("/signup", (req, res) => {
 // Sign In
 app.post("/signin", (req, res) => {
   const { username, password } = req.body;
-  const query = "SELECT * FROM users WHERE username = ? AND password = ?";
+  const query = "SELECT * FROM user WHERE username = ? AND password = ?";
   db.query(query, [username, password], (err, result) => {
     if (err) return res.status(500).send(err);
     if (result.length > 0) res.send("Login successful!");

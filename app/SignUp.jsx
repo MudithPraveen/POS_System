@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useRouter } from "expo-router";
-import { View, Text, TextInput, Button, StyleSheet,Image, TouchableOpacity,ScrollView } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet,Image, TouchableOpacity,ScrollView,Alert } from 'react-native';
+import axios from "axios";
 
 export default function SignUp() {
   const router = useRouter();
@@ -50,7 +51,14 @@ export default function SignUp() {
 
     // If valid, navigate to the SignIn screen
     if (isValid) {
-      router.push("/");
+      axios
+      .post("http://localhost:3000/signup", { name, email, password })
+      .then((response) => {
+        alert("Success", response.data)
+        router.push("/");
+      })
+      .catch((error) => Alert.alert("Error", error.response.data));
+      
     }
   };
 
@@ -68,8 +76,9 @@ export default function SignUp() {
             Get access to your pos system and more
           </Text>
       </View>
+
       {/* Name Input */}
-      <Text style={styles.inputLabel}>Name</Text>
+      <Text style={styles.inputLabel}>User Name</Text>
       <TextInput
         placeholder="Name"
         style={[styles.input, nameError && styles.errorBorder]}

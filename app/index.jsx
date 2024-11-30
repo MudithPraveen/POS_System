@@ -1,34 +1,29 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet,Image, TouchableOpacity,ScrollView } from 'react-native';
+import { View, Text, TextInput, StyleSheet,Image, TouchableOpacity,ScrollView, Alert } from 'react-native';
 import { Link, useRouter } from "expo-router";
+import axios from "axios";
 
 export default function SignIn() {
   const router = useRouter();
 
   // State variables to manage inputs and errors
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
-  // Email validation regex
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleSignIn = () => {
     let isValid = true;
 
     // Reset errors
-    setEmailError('');
+    setUsernameError('');
     setPasswordError('');
 
     // Validate email
-    if (!email) {
-      setEmailError('Email is required.');
+    if (!username) {
+      setUsernameError('Username is required.');
       isValid = false;
-    } else if (!emailRegex.test(email)) {
-      setEmailError('Please enter a valid email address.');
-      isValid = false;
-    }
+    } 
 
     // Validate password
     if (!password) {
@@ -41,7 +36,15 @@ export default function SignIn() {
 
     // If all validations pass, navigate to the next screen
     if (isValid) {
-      router.push('/tabs');
+      axios
+        .post("http://localhost:3000/signin", { username, password })
+        .then((response) => {
+          alert("Success", response.data);
+          router.push('/tabs'); // Route to the home page only on success
+        })
+        .catch((error) => {
+          alert("Invalid credentials", error.response.data); // Handle error
+        });
     }
   };
 
@@ -63,17 +66,16 @@ export default function SignIn() {
           </View>
 
       {/* Email Input */}
-      <Text style={styles.inputLabel}>Email address</Text>
+      <Text style={styles.inputLabel}>User Name</Text>
       <TextInput
-        placeholder="Email"
-        style={[styles.input, emailError && styles.errorBorder]}
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
+        placeholder="User Name"
+        style={[styles.input, usernameError && styles.errorBorder]}
+        value={username}
+        onChangeText={setUsername}
         autoCapitalize="none"
         placeholderTextColor="#6b7280"
       />
-      {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
+      {usernameError ? <Text style={styles.errorText}>{usernameError}</Text> : null}
 
       {/* Password Input */}
       <Text style={styles.inputLabel}>Password</Text>
