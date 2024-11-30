@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Tabs, useRouter } from 'expo-router';
-import { FontAwesome, Foundation } from '@expo/vector-icons';
+import { FontAwesome, Foundation, MaterialIcons } from '@expo/vector-icons';
 
 const TabRoot = () => {
   const router = useRouter();
@@ -32,6 +32,13 @@ const TabRoot = () => {
           options={{ 
             title: "Home", 
             tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color}/> 
+          }}
+        />
+        <Tabs.Screen 
+          name="Category" 
+          options={{ 
+            title: "Category", 
+            tabBarIcon: ({ color }) => <MaterialIcons size={28} name="category" color={color}/> 
           }}
         />
         <Tabs.Screen 
