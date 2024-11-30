@@ -44,7 +44,7 @@ export default function AboutUs() {
       </View>
 
       <View style={styles.footer}>
-        <Image source={require('../../assets/images/footer.png')} style={styles.footerImage} />
+        <Image source={require('../../assets/images/POS-Software.png')} style={styles.footerImage} />
         <Text style={styles.footerText}>We are here to serve you!</Text>
       </View>
     </ScrollView>
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   footerImage: {
     width: 200,
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     borderRadius: 100,
     marginBottom: 20,
+    marginTop: 5,
   },
   footerText: {
     fontSize: 18,
