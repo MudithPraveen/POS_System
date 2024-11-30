@@ -42,6 +42,13 @@ const TabRoot = () => {
           }}
         />
         <Tabs.Screen 
+          name="ItemManage" 
+          options={{ 
+            title: "Manage", 
+            tabBarIcon: ({ color }) => <MaterialIcons size={28} name="add-business" color={color}/> 
+          }}
+        />
+        <Tabs.Screen 
           name="About" 
           options={{ 
             title: "About Us", 
